@@ -3,6 +3,10 @@
 
 <head>
 
+  <!-- =====================================
+       BASIC DOCUMENT META
+  ====================================== -->
+
   <meta charset="UTF-8">
 
   <meta
@@ -10,7 +14,158 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>LiveForge - Real-Time Web Editor</title>
+
+  <!-- =====================================
+       PRIMARY SEO
+  ====================================== -->
+
+  <title>LiveForge - Real-Time HTML CSS JavaScript Editor</title>
+
+  <meta
+    name="description"
+    content="Free real-time HTML, CSS and JavaScript editor with instant live preview, syntax highlighting, autosave, integrated console and responsive browser IDE."
+  >
+
+  <meta
+    name="keywords"
+    content="real time HTML editor, HTML CSS JavaScript editor, live HTML editor, online code editor, live code editor, browser IDE, JavaScript playground, frontend code editor, CodeMirror editor"
+  >
+
+  <meta
+    name="author"
+    content="Ananya Dongare"
+  >
+
+  <meta
+    name="robots"
+    content="index, follow, max-image-preview:large"
+  >
+
+  <meta
+    name="googlebot"
+    content="index, follow, max-image-preview:large"
+  >
+
+
+  <!-- =====================================
+       CANONICAL URL
+  ====================================== -->
+
+  <link
+    rel="canonical"
+    href="https://anu261105.github.io/realtime-html-css-javascript-editor/"
+  >
+
+
+  <!-- =====================================
+       OPEN GRAPH
+  ====================================== -->
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:title"
+    content="LiveForge - Real-Time HTML CSS JavaScript Editor"
+  >
+
+  <meta
+    property="og:description"
+    content="Write HTML, CSS and JavaScript with instant live preview, syntax highlighting, autosave and an integrated browser console."
+  >
+
+  <meta
+    property="og:url"
+    content="https://anu261105.github.io/realtime-html-css-javascript-editor/"
+  >
+
+  <meta
+    property="og:site_name"
+    content="LiveForge"
+  >
+
+  <meta
+    property="og:locale"
+    content="en_US"
+  >
+
+
+  <!-- =====================================
+       TWITTER / SOCIAL CARD META
+  ====================================== -->
+
+  <meta
+    name="twitter:card"
+    content="summary"
+  >
+
+  <meta
+    name="twitter:title"
+    content="LiveForge - Real-Time HTML CSS JavaScript Editor"
+  >
+
+  <meta
+    name="twitter:description"
+    content="Free browser-based HTML, CSS and JavaScript editor with instant live preview, syntax highlighting and integrated console."
+  >
+
+
+  <!-- =====================================
+       THEME / BROWSER META
+  ====================================== -->
+
+  <meta
+    name="theme-color"
+    content="#080d18"
+  >
+
+  <meta
+    name="application-name"
+    content="LiveForge"
+  >
+
+
+  <!-- =====================================
+       STRUCTURED DATA
+  ====================================== -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "LiveForge",
+    "alternateName": "LiveForge Real-Time Web Editor",
+    "url": "https://anu261105.github.io/realtime-html-css-javascript-editor/",
+    "description": "Free real-time HTML, CSS and JavaScript editor with instant live preview, syntax highlighting, autosave and integrated console.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires a modern web browser with JavaScript enabled",
+    "isAccessibleForFree": true,
+    "author": {
+      "@type": "Person",
+      "name": "Ananya Dongare"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Real-time HTML editing",
+      "Real-time CSS editing",
+      "Real-time JavaScript editing",
+      "Instant live preview",
+      "Syntax highlighting",
+      "Integrated JavaScript console",
+      "Local autosave",
+      "Dark and light themes",
+      "Fullscreen preview",
+      "Download complete HTML project"
+    ]
+  }
+  </script>
 
 
   <!-- =====================================
@@ -169,6 +324,7 @@
     <section
       id="editorPanel"
       class="panel"
+      aria-label="Code editor workspace"
     >
 
 
@@ -184,6 +340,7 @@
         <button
           class="editor-tab active"
           data-editor="html"
+          aria-label="Open HTML editor"
         >
 
           <span class="tab-icon html-icon">
@@ -208,6 +365,7 @@
         <button
           class="editor-tab"
           data-editor="css"
+          aria-label="Open CSS editor"
         >
 
           <span class="tab-icon css-icon">
@@ -232,6 +390,7 @@
         <button
           class="editor-tab"
           data-editor="js"
+          aria-label="Open JavaScript editor"
         >
 
           <span class="tab-icon js-icon">
@@ -288,6 +447,7 @@
 
           <textarea
             id="htmlEditor"
+            aria-label="HTML code editor"
           ></textarea>
 
         </div>
@@ -303,6 +463,7 @@
 
           <textarea
             id="cssEditor"
+            aria-label="CSS code editor"
           ></textarea>
 
         </div>
@@ -318,6 +479,7 @@
 
           <textarea
             id="jsEditor"
+            aria-label="JavaScript code editor"
           ></textarea>
 
         </div>
@@ -332,7 +494,12 @@
          DRAGGABLE VERTICAL DIVIDER
     ================================== -->
 
-    <div id="resizer">
+    <div
+      id="resizer"
+      role="separator"
+      aria-label="Resize editor and preview panels"
+      aria-orientation="vertical"
+    >
 
       <span></span>
 
@@ -347,6 +514,7 @@
     <section
       id="previewPanel"
       class="panel"
+      aria-label="Live website preview"
     >
 
 
@@ -380,6 +548,7 @@
             id="consoleBtn"
             class="small-btn console-toggle"
             title="Toggle Console"
+            aria-label="Toggle JavaScript console"
           >
             &gt;_
           </button>
@@ -390,6 +559,7 @@
             id="refreshBtn"
             class="small-btn"
             title="Refresh Preview"
+            aria-label="Refresh live preview"
           >
             ↻
           </button>
@@ -400,6 +570,7 @@
             id="newTabBtn"
             class="small-btn"
             title="Open Preview in New Tab"
+            aria-label="Open preview in new browser tab"
           >
             ↗
           </button>
@@ -410,6 +581,7 @@
             id="fullscreenBtn"
             class="small-btn"
             title="Fullscreen Preview"
+            aria-label="Toggle fullscreen preview"
           >
             ⛶
           </button>
@@ -427,7 +599,7 @@
 
         <iframe
           id="preview"
-          title="Live Website Preview"
+          title="Live HTML CSS JavaScript website preview"
           sandbox="allow-scripts allow-modals allow-forms allow-popups"
         ></iframe>
 
@@ -470,6 +642,7 @@
               <button
                 id="clearConsoleBtn"
                 title="Clear Console"
+                aria-label="Clear console output"
               >
                 Clear
               </button>
@@ -477,6 +650,7 @@
               <button
                 id="closeConsoleBtn"
                 title="Close Console"
+                aria-label="Close JavaScript console"
               >
                 ✕
               </button>
@@ -487,7 +661,10 @@
 
 
 
-          <div id="consoleOutput">
+          <div
+            id="consoleOutput"
+            aria-live="polite"
+          >
 
             <div class="console-empty">
               Console output will appear here.
