@@ -1,14 +1,22 @@
 # LiveForge — Real-Time HTML, CSS & JavaScript Editor
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Open_Editor-6C63FF?style=for-the-badge)](https://anu261105.github.io/realtime-html-css-javascript-editor/)
+[![GitHub Pages](https://img.shields.io/badge/Deployed-GitHub_Pages-222222?style=for-the-badge&logo=github)](https://anu261105.github.io/realtime-html-css-javascript-editor/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![HTML](https://img.shields.io/badge/HTML5-Editor-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![CSS](https://img.shields.io/badge/CSS3-Editor-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-Editor-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
 LiveForge is a free and open-source **real-time HTML, CSS and JavaScript editor** with instant live preview. It is a browser-based **live code editor**, **JavaScript playground**, and lightweight **web development IDE** built with CodeMirror.
 
 Write HTML, style pages with CSS, run JavaScript, inspect console output, and preview results instantly — directly in the browser.
 
-## Live Demo
+### Live Demo
 
-Try LiveForge directly in your browser:
+Try LiveForge directly in your browser — no installation or setup required.
 
-https://anu261105.github.io/realtime-html-css-javascript-editor/
+### [Launch LiveForge →](https://anu261105.github.io/realtime-html-css-javascript-editor/)
+
 
 ## Features
 
