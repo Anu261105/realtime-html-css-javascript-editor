@@ -6,7 +6,9 @@ Write HTML, style pages with CSS, run JavaScript, inspect console output, and pr
 
 ## Live Demo
 
-Live demo coming soon.
+Try LiveForge directly in your browser:
+
+https://anu261105.github.io/realtime-html-css-javascript-editor/
 
 ## Features
 
@@ -92,3 +94,59 @@ realtime-html-css-javascript-editor/
 ├── LICENSE
 ├── robots.txt
 └── .gitignore
+
+## Getting Started
+
+### Clone the Repository
+
+Clone the project using Git:
+
+```bash
+git clone https://github.com/Anu261105/realtime-html-css-javascript-editor.git
+```
+
+### Open the Project
+
+Navigate into the project directory:
+
+```bash
+cd realtime-html-css-javascript-editor
+```
+
+### Run Locally
+
+Open `index.html` directly in a modern web browser or use the Live Server extension in VS Code.
+
+No npm installation, backend server, or build process is required.
+
+## Keyboard Shortcuts
+
+| Shortcut | Action |
+|---|---|
+| `Ctrl + Enter` | Run code |
+| `Ctrl + S` | Save code locally |
+| `Ctrl + F` | Search within the active editor |
+
+## Browser-Based JavaScript Console
+
+LiveForge includes an integrated JavaScript console capable of displaying:
+
+- `console.log()`
+- `console.info()`
+- `console.warn()`
+- `console.error()`
+- Runtime JavaScript errors
+- Unhandled Promise rejections
+
+## Security
+
+User-generated code is rendered inside a sandboxed iframe to help isolate the preview environment from the main editor interface.
+
+## Roadmap
+
+- [ ] Multiple saved projects
+- [ ] Project naming and rename support
+- [ ] Import and export projects
+- [ ] Responsive device preview modes
+- [ ] Starter templates
+- [ ] Shareable
