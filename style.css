@@ -1,0 +1,1372 @@
+/* =========================================
+   GLOBAL RESET
+========================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   THEME VARIABLES
+========================================= */
+
+:root {
+  --bg: #080d18;
+  --panel: #0f1726;
+  --panel-header: #141d2d;
+  --border: #263247;
+
+  --text: #f8fafc;
+  --muted: #94a3b8;
+
+  --accent: #7c5cff;
+  --accent-hover: #6948f5;
+
+  --button-bg: #182235;
+
+  --green: #35d07f;
+  --orange: #ff9f43;
+  --red: #ff5f68;
+  --blue: #60a5fa;
+  --yellow: #facc15;
+
+  --editor-bg: #0b111e;
+  --footer-bg: #080d18;
+
+  --console-bg: #090e18;
+}
+
+
+/* =========================================
+   LIGHT THEME
+========================================= */
+
+body.light-theme {
+  --bg: #e9eef5;
+  --panel: #ffffff;
+  --panel-header: #f7f9fc;
+  --border: #d8e0eb;
+
+  --text: #172033;
+  --muted: #64748b;
+
+  --button-bg: #eef2f7;
+  --editor-bg: #ffffff;
+  --footer-bg: #f8fafc;
+
+  --console-bg: #f8fafc;
+}
+
+
+/* =========================================
+   PAGE
+========================================= */
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+
+body {
+  height: 100vh;
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  background: var(--bg);
+  color: var(--text);
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+
+/* =========================================
+   TOPBAR
+========================================= */
+
+.topbar {
+  height: 72px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 22px;
+
+  background: var(--panel);
+
+  border-bottom:
+    1px solid var(--border);
+
+  box-shadow:
+    0 3px 15px
+    rgba(0, 0, 0, 0.12);
+
+  z-index: 20;
+}
+
+
+/* =========================================
+   BRAND
+========================================= */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+
+.logo {
+  width: 44px;
+  height: 44px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8b5cf6,
+      #4f6fff
+    );
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 800;
+
+  box-shadow:
+    0 8px 25px
+    rgba(124, 92, 255, 0.3);
+}
+
+
+.brand h1 {
+  font-size: 19px;
+  line-height: 1.1;
+}
+
+
+.brand span {
+  display: block;
+
+  margin-top: 4px;
+
+  color: var(--muted);
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   HEADER ACTIONS
+========================================= */
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+button {
+  border:
+    1px solid var(--border);
+
+  outline: none;
+
+  padding: 9px 13px;
+
+  border-radius: 8px;
+
+  background:
+    var(--button-bg);
+
+  color:
+    var(--text);
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+
+button:hover {
+  transform:
+    translateY(-1px);
+
+  border-color:
+    var(--accent);
+}
+
+
+button:active {
+  transform:
+    translateY(0);
+}
+
+
+/* =========================================
+   PRIMARY BUTTON
+========================================= */
+
+.primary-btn {
+  border-color: transparent;
+
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c5cff,
+      #5668ff
+    );
+
+  box-shadow:
+    0 6px 18px
+    rgba(124, 92, 255, 0.22);
+}
+
+
+.primary-btn:hover {
+  background:
+    linear-gradient(
+      135deg,
+      #6948f5,
+      #4758f5
+    );
+}
+
+
+/* =========================================
+   AUTO RUN
+========================================= */
+
+.auto-run-label {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  margin-right: 5px;
+
+  color: var(--muted);
+
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+
+.auto-run-label input {
+  width: 15px;
+  height: 15px;
+
+  accent-color:
+    var(--accent);
+}
+
+
+/* =========================================
+   WORKSPACE
+========================================= */
+
+#workspace {
+  flex: 1;
+
+  min-width: 0;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: row;
+
+  padding: 10px;
+
+  background:
+    var(--bg);
+}
+
+
+/* =========================================
+   PANELS
+========================================= */
+
+.panel {
+  min-width: 0;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background:
+    var(--panel);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    10px;
+}
+
+
+/* =========================================
+   LEFT PANEL
+========================================= */
+
+#editorPanel {
+  width: 50%;
+  height: 100%;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================
+   RIGHT PANEL
+========================================= */
+
+#previewPanel {
+  flex: 1;
+
+  min-width: 0;
+
+  height: 100%;
+}
+
+
+/* =========================================
+   EDITOR TABS BAR
+========================================= */
+
+.editor-tabs {
+  height: 46px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: stretch;
+
+  background:
+    var(--panel-header);
+
+  border-bottom:
+    1px solid var(--border);
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   TAB BUTTON
+========================================= */
+
+.editor-tab {
+  position: relative;
+
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  padding:
+    0 16px;
+
+  border: none;
+  border-right:
+    1px solid var(--border);
+
+  border-radius: 0;
+
+  background:
+    transparent;
+
+  color:
+    var(--muted);
+
+  font-size:
+    12px;
+
+  font-weight:
+    700;
+}
+
+
+.editor-tab:hover {
+  transform: none;
+
+  background:
+    rgba(124, 92, 255, 0.07);
+
+  border-color:
+    var(--border);
+}
+
+
+.editor-tab.active {
+  color:
+    var(--text);
+
+  background:
+    var(--editor-bg);
+}
+
+
+.editor-tab.active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 2px;
+
+  background:
+    var(--accent);
+}
+
+
+/* =========================================
+   TAB ICONS
+========================================= */
+
+.tab-icon {
+  min-width: 22px;
+
+  font-family:
+    Consolas,
+    monospace;
+
+  font-size:
+    11px;
+
+  font-weight:
+    800;
+}
+
+
+.html-icon {
+  color:
+    #ff8a4c;
+}
+
+
+.css-icon {
+  color:
+    #60a5fa;
+}
+
+
+.js-icon {
+  color:
+    #facc15;
+}
+
+
+/* =========================================
+   CHANGE DOT
+========================================= */
+
+.tab-change-dot {
+  width: 6px;
+  height: 6px;
+
+  display: none;
+
+  border-radius: 50%;
+
+  background:
+    var(--accent);
+}
+
+
+.tab-change-dot.visible {
+  display: inline-block;
+}
+
+
+/* =========================================
+   EDITOR STATS
+========================================= */
+
+.editor-stats {
+  flex: 1;
+
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  padding:
+    0 12px;
+
+  color:
+    var(--muted);
+
+  font-size:
+    10px;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   EDITORS CONTAINER
+========================================= */
+
+#editorsContainer {
+  position: relative;
+
+  flex: 1;
+
+  min-width: 0;
+  min-height: 0;
+
+  overflow: hidden;
+
+  background:
+    var(--editor-bg);
+}
+
+
+/* =========================================
+   INDIVIDUAL EDITOR VIEW
+========================================= */
+
+.editor-view {
+  position: absolute;
+
+  inset: 0;
+
+  display: none;
+
+  overflow: hidden;
+}
+
+
+.editor-view.active {
+  display: block;
+}
+
+
+/* =========================================
+   CODEMIRROR
+========================================= */
+
+.CodeMirror {
+  width: 100%;
+  height: 100% !important;
+
+  background:
+    #0b111e !important;
+
+  color:
+    #e6edf3;
+
+  font-family:
+    "Cascadia Code",
+    "Fira Code",
+    "JetBrains Mono",
+    Consolas,
+    monospace;
+
+  font-size:
+    14px;
+
+  line-height:
+    1.65;
+}
+
+
+.CodeMirror-scroll {
+  min-height: 100%;
+}
+
+
+/* =========================================
+   CODEMIRROR GUTTER
+========================================= */
+
+.CodeMirror-gutters {
+  background:
+    #0a101c !important;
+
+  border-right:
+    1px solid #202b3e !important;
+}
+
+
+.CodeMirror-linenumber {
+  color:
+    #526078 !important;
+
+  padding:
+    0 10px 0 6px !important;
+}
+
+
+/* =========================================
+   CURSOR
+========================================= */
+
+.CodeMirror-cursor {
+  border-left:
+    2px solid #a78bfa !important;
+}
+
+
+/* =========================================
+   ACTIVE LINE
+========================================= */
+
+.CodeMirror-activeline-background {
+  background:
+    rgba(
+      124,
+      92,
+      255,
+      0.07
+    ) !important;
+}
+
+
+/* =========================================
+   SELECTION
+========================================= */
+
+.CodeMirror-selected {
+  background:
+    rgba(
+      124,
+      92,
+      255,
+      0.28
+    ) !important;
+}
+
+
+/* =========================================
+   FOLD GUTTER
+========================================= */
+
+.CodeMirror-foldgutter {
+  width: 16px;
+}
+
+
+.CodeMirror-foldgutter-open,
+.CodeMirror-foldgutter-folded {
+  color:
+    #7c8aa5;
+}
+
+
+/* =========================================
+   LIGHT EDITORS
+========================================= */
+
+body.light-theme
+.CodeMirror {
+  background:
+    #ffffff !important;
+
+  color:
+    #1e293b;
+}
+
+
+body.light-theme
+.CodeMirror-gutters {
+  background:
+    #f4f7fb !important;
+
+  border-right:
+    1px solid #d8e0eb !important;
+}
+
+
+body.light-theme
+.CodeMirror-linenumber {
+  color:
+    #94a3b8 !important;
+}
+
+
+/* =========================================
+   VERTICAL RESIZER
+========================================= */
+
+#resizer {
+  width: 12px;
+  height: 100%;
+
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  cursor:
+    col-resize;
+
+  background:
+    transparent;
+}
+
+
+#resizer span {
+  width: 4px;
+  height: 52px;
+
+  border-radius:
+    999px;
+
+  background:
+    var(--border);
+
+  transition:
+    height 0.2s ease,
+    background 0.2s ease;
+}
+
+
+#resizer:hover span {
+  height: 90px;
+
+  background:
+    var(--accent);
+}
+
+
+/* =========================================
+   PREVIEW HEADER
+========================================= */
+
+.preview-header {
+  height: 46px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding:
+    0 12px;
+
+  background:
+    var(--panel-header);
+
+  border-bottom:
+    1px solid var(--border);
+}
+
+
+.preview-title {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  font-size:
+    13px;
+
+  font-weight:
+    700;
+}
+
+
+.preview-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background:
+    var(--green);
+
+  box-shadow:
+    0 0 9px
+    rgba(53, 208, 127, 0.6);
+}
+
+
+/* =========================================
+   PREVIEW ACTIONS
+========================================= */
+
+.preview-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+}
+
+
+#previewStatus {
+  margin-right: 3px;
+
+  color:
+    var(--green);
+
+  font-size:
+    11px;
+
+  font-weight:
+    700;
+}
+
+
+.small-btn {
+  min-width: 31px;
+
+  padding:
+    5px 9px;
+}
+
+
+.console-toggle.active {
+  color:
+    white;
+
+  background:
+    var(--accent);
+}
+
+
+/* =========================================
+   PREVIEW BODY
+========================================= */
+
+.preview-body {
+  position: relative;
+
+  flex: 1;
+
+  min-width: 0;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   IFRAME
+========================================= */
+
+#preview {
+  width: 100%;
+
+  flex: 1;
+
+  min-width: 0;
+  min-height: 0;
+
+  border: none;
+
+  background:
+    white;
+}
+
+
+/* =========================================
+   CONSOLE PANEL
+========================================= */
+
+.console-panel {
+  height: 190px;
+  flex-shrink: 0;
+
+  display: none;
+  flex-direction: column;
+
+  background:
+    var(--console-bg);
+
+  border-top:
+    1px solid var(--border);
+}
+
+
+.console-panel.open {
+  display: flex;
+}
+
+
+/* =========================================
+   CONSOLE HEADER
+========================================= */
+
+.console-header {
+  height: 38px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding:
+    0 10px;
+
+  background:
+    var(--panel-header);
+
+  border-bottom:
+    1px solid var(--border);
+}
+
+
+.console-title {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  font-size:
+    11px;
+}
+
+
+.console-count {
+  min-width: 20px;
+
+  padding:
+    2px 6px;
+
+  border-radius:
+    999px;
+
+  text-align:
+    center;
+
+  background:
+    var(--button-bg);
+
+  color:
+    var(--muted);
+
+  font-size:
+    9px;
+}
+
+
+.console-actions {
+  display: flex;
+  gap: 5px;
+}
+
+
+.console-actions button {
+  padding:
+    4px 8px;
+
+  font-size:
+    10px;
+}
+
+
+/* =========================================
+   CONSOLE OUTPUT
+========================================= */
+
+#consoleOutput {
+  flex: 1;
+
+  min-height: 0;
+
+  overflow: auto;
+
+  padding:
+    7px 0;
+
+  font-family:
+    "Cascadia Code",
+    Consolas,
+    monospace;
+
+  font-size:
+    11px;
+}
+
+
+.console-empty {
+  padding:
+    10px 12px;
+
+  color:
+    var(--muted);
+}
+
+
+.console-message {
+  padding:
+    6px 12px;
+
+  border-bottom:
+    1px solid
+    rgba(148, 163, 184, 0.08);
+
+  white-space:
+    pre-wrap;
+
+  word-break:
+    break-word;
+}
+
+
+.console-message.log {
+  color:
+    var(--text);
+}
+
+
+.console-message.info {
+  color:
+    var(--blue);
+}
+
+
+.console-message.warn {
+  color:
+    var(--yellow);
+
+  background:
+    rgba(250, 204, 21, 0.05);
+}
+
+
+.console-message.error {
+  color:
+    #ff7b83;
+
+  background:
+    rgba(255, 95, 104, 0.07);
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+  height: 30px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding:
+    0 18px;
+
+  background:
+    var(--footer-bg);
+
+  border-top:
+    1px solid var(--border);
+
+  color:
+    var(--muted);
+
+  font-size:
+    11px;
+}
+
+
+.footer > div {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+}
+
+
+.save-indicator {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background:
+    var(--green);
+}
+
+
+.footer-center {
+  color:
+    var(--accent);
+
+  font-weight:
+    700;
+}
+
+
+.footer-shortcuts {
+  gap:
+    18px !important;
+}
+
+
+/* =========================================
+   FULLSCREEN PREVIEW
+========================================= */
+
+#previewPanel.fullscreen-preview {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999;
+
+  width:
+    100vw !important;
+
+  height:
+    100vh !important;
+
+  border: none;
+
+  border-radius: 0;
+}
+
+
+/* =========================================
+   CODEMIRROR SEARCH DIALOG
+========================================= */
+
+.CodeMirror-dialog {
+  background:
+    #141d2d !important;
+
+  color:
+    white !important;
+
+  border-bottom:
+    1px solid #263247 !important;
+}
+
+
+.CodeMirror-dialog input {
+  color:
+    white !important;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media
+(max-width: 1000px) {
+
+  .editor-stats #charCount {
+    display: none;
+  }
+
+
+  .footer-shortcuts span:first-child,
+  .footer-shortcuts span:nth-child(2) {
+    display: none;
+  }
+
+}
+
+
+/* =========================================
+   SMALL TABLET
+========================================= */
+
+@media
+(max-width: 850px) {
+
+  .topbar {
+    height: auto;
+
+    padding:
+      12px;
+
+    gap:
+      12px;
+  }
+
+
+  .actions {
+    flex-wrap: wrap;
+
+    justify-content:
+      flex-end;
+  }
+
+
+  .brand-text span {
+    display: none;
+  }
+
+
+  .editor-tab {
+    padding:
+      0 10px;
+  }
+
+
+  .editor-stats {
+    display: none;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media
+(max-width: 650px) {
+
+  body {
+    overflow: auto;
+  }
+
+
+  .topbar {
+    flex-direction: column;
+
+    align-items:
+      flex-start;
+  }
+
+
+  .actions {
+    width: 100%;
+
+    justify-content:
+      flex-start;
+  }
+
+
+  #workspace {
+    min-height:
+      900px;
+
+    flex-direction:
+      column;
+  }
+
+
+  #editorPanel {
+    width:
+      100% !important;
+
+    height:
+      50%;
+  }
+
+
+  #previewPanel {
+    width:
+      100%;
+
+    height:
+      50%;
+  }
+
+
+  #resizer {
+    width:
+      100%;
+
+    height:
+      12px;
+
+    cursor:
+      row-resize;
+  }
+
+
+  #resizer span {
+    width:
+      52px;
+
+    height:
+      4px;
+  }
+
+
+  #resizer:hover span {
+    width:
+      90px;
+
+    height:
+      4px;
+  }
+
+
+  .editor-tab {
+    flex: 1;
+
+    justify-content:
+      center;
+
+    padding:
+      0 5px;
+  }
+
+
+  .editor-tab span:nth-child(2) {
+    font-size:
+      10px;
+  }
+
+
+  .footer {
+    display: none;
+  }
+
+
+  .console-panel {
+    height:
+      150px;
+  }
+
+}

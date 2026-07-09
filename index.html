@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>LiveForge - Real-Time Web Editor</title>
+
+
+  <!-- =====================================
+       CODEMIRROR CORE CSS
+  ====================================== -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css"
+  >
+
+
+  <!-- DARK THEME -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-darker.min.css"
+  >
+
+
+  <!-- CODE FOLDING -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/foldgutter.min.css"
+  >
+
+
+  <!-- SEARCH DIALOG -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/dialog/dialog.min.css"
+  >
+
+
+  <!-- OUR CSS -->
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+</head>
+
+
+<body>
+
+
+  <!-- =====================================
+       TOP NAVBAR
+  ====================================== -->
+
+  <header class="topbar">
+
+
+    <!-- BRAND -->
+
+    <div class="brand">
+
+      <div class="logo">
+        &lt;/&gt;
+      </div>
+
+
+      <div class="brand-text">
+
+        <h1>
+          LiveForge
+        </h1>
+
+        <span>
+          Real-Time Web Editor
+        </span>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- ACTIONS -->
+
+    <div class="actions">
+
+
+      <label class="auto-run-label">
+
+        <input
+          type="checkbox"
+          id="autoRun"
+          checked
+        >
+
+        <span>
+          Auto Run
+        </span>
+
+      </label>
+
+
+
+      <button
+        id="runBtn"
+        class="primary-btn"
+        title="Run Code (Ctrl + Enter)"
+      >
+        ▶ Run
+      </button>
+
+
+
+      <button
+        id="resetBtn"
+        title="Reset All Editors"
+      >
+        ↻ Reset
+      </button>
+
+
+
+      <button
+        id="downloadBtn"
+        title="Download Complete HTML"
+      >
+        ↓ Download
+      </button>
+
+
+
+      <button
+        id="themeBtn"
+        class="icon-btn"
+        title="Toggle Theme"
+      >
+        ☀
+      </button>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =====================================
+       MAIN WORKSPACE
+  ====================================== -->
+
+  <main id="workspace">
+
+
+    <!-- =================================
+         LEFT SIDE - EDITORS
+    ================================== -->
+
+    <section
+      id="editorPanel"
+      class="panel"
+    >
+
+
+      <!-- =============================
+           EDITOR TABS
+      ============================== -->
+
+      <div class="editor-tabs">
+
+
+        <!-- HTML TAB -->
+
+        <button
+          class="editor-tab active"
+          data-editor="html"
+        >
+
+          <span class="tab-icon html-icon">
+            &lt;/&gt;
+          </span>
+
+          <span>
+            HTML
+          </span>
+
+          <span
+            class="tab-change-dot"
+            id="htmlChangeDot"
+          ></span>
+
+        </button>
+
+
+
+        <!-- CSS TAB -->
+
+        <button
+          class="editor-tab"
+          data-editor="css"
+        >
+
+          <span class="tab-icon css-icon">
+            #
+          </span>
+
+          <span>
+            CSS
+          </span>
+
+          <span
+            class="tab-change-dot"
+            id="cssChangeDot"
+          ></span>
+
+        </button>
+
+
+
+        <!-- JAVASCRIPT TAB -->
+
+        <button
+          class="editor-tab"
+          data-editor="js"
+        >
+
+          <span class="tab-icon js-icon">
+            JS
+          </span>
+
+          <span>
+            JavaScript
+          </span>
+
+          <span
+            class="tab-change-dot"
+            id="jsChangeDot"
+          ></span>
+
+        </button>
+
+
+        <!-- EDITOR STATS -->
+
+        <div class="editor-stats">
+
+          <span id="cursorPosition">
+            Ln 1, Col 1
+          </span>
+
+          <span id="lineCount">
+            1 line
+          </span>
+
+          <span id="charCount">
+            0 chars
+          </span>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =============================
+           EDITORS AREA
+      ============================== -->
+
+      <div id="editorsContainer">
+
+
+        <!-- HTML EDITOR -->
+
+        <div
+          class="editor-view active"
+          id="htmlEditorView"
+        >
+
+          <textarea
+            id="htmlEditor"
+          ></textarea>
+
+        </div>
+
+
+
+        <!-- CSS EDITOR -->
+
+        <div
+          class="editor-view"
+          id="cssEditorView"
+        >
+
+          <textarea
+            id="cssEditor"
+          ></textarea>
+
+        </div>
+
+
+
+        <!-- JAVASCRIPT EDITOR -->
+
+        <div
+          class="editor-view"
+          id="jsEditorView"
+        >
+
+          <textarea
+            id="jsEditor"
+          ></textarea>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         DRAGGABLE VERTICAL DIVIDER
+    ================================== -->
+
+    <div id="resizer">
+
+      <span></span>
+
+    </div>
+
+
+
+    <!-- =================================
+         RIGHT SIDE
+    ================================== -->
+
+    <section
+      id="previewPanel"
+      class="panel"
+    >
+
+
+      <!-- PREVIEW HEADER -->
+
+      <div class="preview-header">
+
+
+        <div class="preview-title">
+
+          <span class="preview-dot"></span>
+
+          <span>
+            Live Preview
+          </span>
+
+        </div>
+
+
+
+        <div class="preview-actions">
+
+
+          <span id="previewStatus">
+            Live
+          </span>
+
+
+
+          <button
+            id="consoleBtn"
+            class="small-btn console-toggle"
+            title="Toggle Console"
+          >
+            &gt;_
+          </button>
+
+
+
+          <button
+            id="refreshBtn"
+            class="small-btn"
+            title="Refresh Preview"
+          >
+            ↻
+          </button>
+
+
+
+          <button
+            id="newTabBtn"
+            class="small-btn"
+            title="Open Preview in New Tab"
+          >
+            ↗
+          </button>
+
+
+
+          <button
+            id="fullscreenBtn"
+            class="small-btn"
+            title="Fullscreen Preview"
+          >
+            ⛶
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- PREVIEW BODY -->
+
+      <div class="preview-body">
+
+
+        <iframe
+          id="preview"
+          title="Live Website Preview"
+          sandbox="allow-scripts allow-modals allow-forms allow-popups"
+        ></iframe>
+
+
+
+        <!-- =============================
+             BUILT-IN CONSOLE
+        ============================== -->
+
+        <div
+          id="consolePanel"
+          class="console-panel"
+        >
+
+
+          <div class="console-header">
+
+            <div class="console-title">
+
+              <span>
+                &gt;_
+              </span>
+
+              <strong>
+                Console
+              </strong>
+
+              <span
+                id="consoleCount"
+                class="console-count"
+              >
+                0
+              </span>
+
+            </div>
+
+
+            <div class="console-actions">
+
+              <button
+                id="clearConsoleBtn"
+                title="Clear Console"
+              >
+                Clear
+              </button>
+
+              <button
+                id="closeConsoleBtn"
+                title="Close Console"
+              >
+                ✕
+              </button>
+
+            </div>
+
+          </div>
+
+
+
+          <div id="consoleOutput">
+
+            <div class="console-empty">
+              Console output will appear here.
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- =====================================
+       FOOTER
+  ====================================== -->
+
+  <footer class="footer">
+
+
+    <div class="save-area">
+
+      <span class="save-indicator"></span>
+
+      <span id="saveStatus">
+        Saved locally
+      </span>
+
+    </div>
+
+
+
+    <div class="footer-center">
+
+      <span id="activeLanguage">
+        HTML
+      </span>
+
+    </div>
+
+
+
+    <div class="footer-shortcuts">
+
+      <span>
+        Ctrl + Enter: Run
+      </span>
+
+      <span>
+        Ctrl + S: Save
+      </span>
+
+      <span>
+        HTML • CSS • JavaScript
+      </span>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- =====================================
+       CODEMIRROR CORE
+  ====================================== -->
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"
+  ></script>
+
+
+
+  <!-- HTML / XML MODE -->
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"
+  ></script>
+
+
+
+  <!-- CSS MODE -->
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"
+  ></script>
+
+
+
+  <!-- JAVASCRIPT MODE -->
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"
+  ></script>
+
+
+
+  <!-- HTML MIXED MODE -->
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"
+  ></script>
+
+
+
+  <!-- AUTO CLOSE BRACKETS -->
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"
+  ></script>
+
+
+
+  <!-- AUTO CLOSE TAGS -->
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closetag.min.js"
+  ></script>
+
+
+
+  <!-- MATCH BRACKETS -->
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"
+  ></script>
+
+
+
+  <!-- MATCH TAGS -->
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchtags.min.js"
+  ></script>
+
+
+
+  <!-- ACTIVE LINE -->
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/selection/active-line.min.js"
+  ></script>
+
+
+
+  <!-- CODE FOLDING -->
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/foldcode.min.js"
+  ></script>
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/foldgutter.min.js"
+  ></script>
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/xml-fold.min.js"
+  ></script>
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/brace-fold.min.js"
+  ></script>
+
+
+
+  <!-- SEARCH -->
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/search/searchcursor.min.js"
+  ></script>
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/search/search.min.js"
+  ></script>
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/dialog/dialog.min.js"
+  ></script>
+
+
+
+  <!-- OUR JAVASCRIPT -->
+
+  <script src="script.js"></script>
+
+
+</body>
+
+</html>
