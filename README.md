@@ -33,7 +33,9 @@ https://anu261105.github.io/realtime-html-css-javascript-editor/
 
 ## Screenshot
 
-A project screenshot will be added here before the first public release.
+![LiveForge Real-Time HTML CSS JavaScript Editor](assets/screenshots/liveforge-preview.png)
+
+> LiveForge provides a browser-based development workspace with dedicated HTML, CSS and JavaScript editors, instant live preview, syntax highlighting and an integrated console.
 
 ## What is LiveForge?
 
